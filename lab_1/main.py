@@ -14,7 +14,7 @@ def filter_stop_words(frequencies: dict, stop_words: tuple) -> dict:
     """
     Removes all stop words from the given frequencies dictionary
     """
-    return dict
+    return 1
 
 def get_top_n(frequencies: dict, top_n: int) -> tuple:
     """
