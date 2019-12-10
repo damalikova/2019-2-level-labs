@@ -10,8 +10,6 @@ def generate_edit_matrix(num_rows: int, num_cols: int) -> list:
             edit_matrix.append([0] * num_cols)
     return edit_matrix
 
-    if isinstance(num_rows, int) and isinstance(num_cols, int):
-        edit_matrix = [[0 for j in range(num_cols)] for i in range(num_rows)]
 
 def initialize_edit_matrix(edit_matrix: tuple, add_weight: int, remove_weight: int) -> list:
     if not isinstance(edit_matrix, tuple) or not edit_matrix:
