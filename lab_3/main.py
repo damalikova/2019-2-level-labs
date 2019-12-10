@@ -171,11 +171,11 @@ def split_by_sentence(text: str) -> list:
         text = text.replace(' \n ', ' ')
 
     for element in text:
-        if not element.isalpha() and element not in splitters and element is not ' ':
+        if not element.isalpha() and element not in splitters and element != ' ':
             text = text.replace(element, '')
 
     for ind, sym in enumerate(text):
-        if sym.isupper() and text[ind - 1] is ' ' and text[ind - 2] in splitters:
+        if sym.isupper() and text[ind - 1] == ' ' and text[ind - 2] in splitters:
             text = text.replace(text[ind - 2], '%')
 
     for symbol in text:
