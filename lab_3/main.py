@@ -28,11 +28,10 @@ class WordStorage:
             self.storage[word] = id_number
             return id_number
 
-        else:
-            if not self.storage.get(word):
-                id_number += 1
-                self.storage[word] = id_number
-            return self.storage.get(word)
+        if not self.storage.get(word):
+            id_number += 1
+            self.storage[word] = id_number
+        return self.storage.get(word)
 
     def get_id_of(self, word: str) -> int:
 
@@ -79,7 +78,7 @@ class NGramTrie:
 
         right = self.size
 
-        for i, el in enumerate(sentence):
+        for i, _el in enumerate(sentence):
             n_gram = sentence[i:right]
 
             if len(n_gram) is self.size and n_gram not in self.gram_frequencies:
@@ -107,8 +106,8 @@ class NGramTrie:
                 if part_to_compare == part_to_find:
                     n_grams_frequency += self.gram_frequencies[n_grams]
 
-            p = n_gram_frequency / n_grams_frequency
-            self.gram_log_probabilities[n_gram] = log(p)
+            probability = n_gram_frequency / n_grams_frequency
+            self.gram_log_probabilities[n_gram] = log(probability)
 
     def predict_next_sentence(self, prefix: tuple) -> list:
 
@@ -132,9 +131,9 @@ class NGramTrie:
         for key in self.gram_log_probabilities:
 
             if predicted_prob is self.gram_log_probabilities[key]:
-                for el in key:
-                    if el not in self.predicted_sentence:
-                        self.predicted_sentence.append(el)
+                for element in key:
+                    if element not in self.predicted_sentence:
+                        self.predicted_sentence.append(element)
 
                 new_prefix = key[1:]
                 self.predict_next_sentence(new_prefix)
@@ -171,17 +170,17 @@ def split_by_sentence(text: str) -> list:
     if ' \n ' in text:
         text = text.replace(' \n ', ' ')
 
-    for el in text:
-        if not el.isalpha() and el not in splitters and el is not ' ':
-            text = text.replace(el, '')
+    for element in text:
+        if not element.isalpha() and element not in splitters and element is not ' ':
+            text = text.replace(element, '')
 
     for ind, sym in enumerate(text):
         if sym.isupper() and text[ind - 1] is ' ' and text[ind - 2] in splitters:
             text = text.replace(text[ind - 2], '%')
 
-    for le in text:
-        if le in splitters:
-            text = text.replace(le, '')
+    for symbol in text:
+        if symbol in splitters:
+            text = text.replace(symbol, '')
 
     text_as_list = text.lower().split('%')
 
