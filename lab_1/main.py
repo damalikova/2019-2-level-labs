@@ -1,30 +1,4 @@
 def calculate_frequences(text: str) -> dict:
-
-    punctuation = [
-        '.', ',', '!', '?', ';',
-        ':', '"', "'", '—', '-',
-        '$', '%', '*', '@', '^',
-        '&', '~', '*', '+', '='
-        ]
-
-    if isinstance(text, str):
-
-        for el in text:
-            if el in punctuation or el.isdigit() or el.isspace():
-                text = text.replace(el, ' ')
-        split_text = text.lower().split()
-
-        frequencies = dict()
-
-        for word in split_text:
-            if word not in frequencies:
-                frequencies[word] = frequencies.get(word, 0)
-            frequencies[word] += 1
-        return frequencies
-
-    return {}
-
-def calculate_frequences(text: str) -> dict:
     """
     Calculates number of times each word appears in the text
     """
