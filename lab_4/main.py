@@ -1,7 +1,3 @@
-"""
-lab_4
-"""
-
 from math import log
 
 REFERENCE_TEXTS = []
@@ -65,7 +61,7 @@ class TfIdfCalculator:
 
             self.tf_values.append(tf_dict)
 
-            return self.tf_values
+        return self.tf_values
 
     def calculate_idf(self):
 
@@ -198,16 +194,16 @@ class TfIdfCalculator:
 
 
 if __name__ == '__main__':
-    TEXTS = ['5_7.txt', '15_2.txt', '10547_3.txt', '12230_7.txt']
-    for text in TEXTS:
+    texts = ['5_7.txt', '15_2.txt', '10547_3.txt', '12230_7.txt']
+    for text in texts:
         with open(text, 'r') as f:
             REFERENCE_TEXTS.append(f.read())
     # scenario to check your work
-    TEST_TEXTS = clean_tokenize_corpus(REFERENCE_TEXTS)
-    TF_IDF = TfIdfCalculator(TEST_TEXTS)
-    TF_IDF.calculate_tf()
-    TF_IDF.calculate_idf()
-    TF_IDF.calculate()
-    TF_IDF.dump_report_csv()
-    print(TF_IDF.report_on('good', 0))
-    print(TF_IDF.report_on('and', 1))
+    test_texts = clean_tokenize_corpus(REFERENCE_TEXTS)
+    tf_idf = TfIdfCalculator(test_texts)
+    tf_idf.calculate_tf()
+    tf_idf.calculate_idf()
+    tf_idf.calculate()
+    tf_idf.dump_report_csv()
+    print(tf_idf.report_on('good', 0))
+    print(tf_idf.report_on('and', 1))
